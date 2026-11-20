@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f6ef;  /* YC / Hacker News cream */
+  --foreground: #1c1c1c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navy: #1c1c1c;  /* near-black: text + dark bands */
+  --color-navy-2: #333333;
+  --color-brand: #ff6600;      /* YC orange: fills, large text on dark */
+  --color-brand-ink: #c2410c;  /* orange for small text on light backgrounds (4.8:1 on cream) */
+  --color-gold: #ffa94d;
+  --color-line: #deded2;   /* warm hairline borders */
+  --color-muted: #6a6a60;  /* secondary text (4.9:1 on cream) */
+  --color-surface: #ffffff;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --shadow-card: 0 1px 0 rgb(28 28 28 / 0.04);
+}
+
+html { scroll-behavior: smooth; }
+:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; border-radius: 6px; }
+::selection { background: rgb(255 102 0 / 0.25); }
+
+/* Subtle dotted grid for the hero; purely decorative. */
+.bg-grid {
+  background-image: radial-gradient(rgb(255 255 255 / 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 0.5s ease-out both; }
+.rise-2 { animation-delay: 0.08s; }
+.rise-3 { animation-delay: 0.16s; }
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* Data numerals: monospaced, tabular — numbers are the product. */
+.num { font-family: var(--font-geist-mono), ui-monospace, monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.underline-brand { background: linear-gradient(transparent 62%, rgb(255 102 0 / 0.35) 62% 92%, transparent 92%); }

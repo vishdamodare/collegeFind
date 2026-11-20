@@ -1,0 +1,134 @@
+{
+ "2022ENGG_CAP1_CutOff.pdf": {
+  "status": 200,
+  "live": "90b1f40f0fcb2b9cfb1b4f1eb95f3dd78a22e4a2324581bc4998ace15e7fe48c",
+  "db": "90b1f40f0fcb2b9cfb1b4f1eb95f3dd78a22e4a2324581bc4998ace15e7fe48c",
+  "local": "90b1f40f0fcb2b9cfb1b4f1eb95f3dd78a22e4a2324581bc4998ace15e7fe48c",
+  "size_live": 3163569,
+  "size_db": 3163569,
+  "live_eq_db": true,
+  "live_eq_local": true,
+  "db_eq_local": true
+ },
+ "2022ENGG_CAP2_CutOff.pdf": {
+  "status": 200,
+  "live": "9d91ea8d4a76924962a697595b4801373c6d3b46c1df8fca0cab441cc7e4be66",
+  "db": "9d91ea8d4a76924962a697595b4801373c6d3b46c1df8fca0cab441cc7e4be66",
+  "local": "9d91ea8d4a76924962a697595b4801373c6d3b46c1df8fca0cab441cc7e4be66",
+  "size_live": 3349708,
+  "size_db": 3349708,
+  "live_eq_db": true,
+  "live_eq_local": true,
+  "db_eq_local": true
+ },
+ "2022ENGG_CAP3_CutOff.pdf": {
+  "status": 200,
+  "live": "e50fb796196b573982b8a2c461ff4e81b9b9e255a8af8ced2a3183430136764a",
+  "db": "e50fb796196b573982b8a2c461ff4e81b9b9e255a8af8ced2a3183430136764a",
+  "local": "e50fb796196b573982b8a2c461ff4e81b9b9e255a8af8ced2a3183430136764a",
+  "size_live": 2719672,
+  "size_db": 2719672,
+  "live_eq_db": true,
+  "live_eq_local": true,
+  "db_eq_local": true
+ },
+ "2022SeatMatrix.pdf": {
+  "status": 200,
+  "live": "5c56c76b752bbf461c7085b0f93cc927f6b7077836ece100c7d78cb2cdd20ef8",
+  "db": "5c56c76b752bbf461c7085b0f93cc927f6b7077836ece100c7d78cb2cdd20ef8",
+  "local": "5c56c76b752bbf461c7085b0f93cc927f6b7077836ece100c7d78cb2cdd20ef8",
+  "size_live": 8749286,
+  "size_db": 8749286,
+  "live_eq_db": true,
+  "live_eq_local": true,
+  "db_eq_local": true
+ },
+ "2023ENGG_CAP1_CutOff.pdf": {
+  "status": 200,
+  "live": "dee4246359b17cd9182f775dcf3e645debff58528c382cb110d8d44552188a74",
+  "db": "dee4246359b17cd9182f775dcf3e645debff58528c382cb110d8d44552188a74",
+  "local": "dee4246359b17cd9182f775dcf3e645debff58528c382cb110d8d44552188a74",
+  "size_live": 3612571,
+  "size_db": 3612571,
+  "live_eq_db": true,
+  "live_eq_local": true,
+  "db_eq_local": true
+ },
+ "2023ENGG_CAP2_CutOff.pdf": {
+  "status": 200,
+  "live": "e61f65d3d57c4137cc880f35dfd59f5ee78f1227ea8521636f29cd9582e91f64",
+  "db": "e61f65d3d57c4137cc880f35dfd59f5ee78f1227ea8521636f29cd9582e91f64",
+  "local": "e61f65d3d57c4137cc880f35dfd59f5ee78f1227ea8521636f29cd9582e91f64",
+  "size_live": 3916544,
+  "size_db": 3916544,
+  "live_eq_db": true,
+  "live_eq_local": true,
+  "db_eq_local": true
+ },
+ "2023ENGG_CAP3_CutOff.pdf": {
+  "status": 200,
+  "live": "0bedd926581d76eb4d1278fa36cc54554370c43196885dbb522b664e8691afed",
+  "db": "0bedd926581d76eb4d1278fa36cc54554370c43196885dbb522b664e8691afed",
+  "local": "0bedd926581d76eb4d1278fa36cc54554370c43196885dbb522b664e8691afed",
+  "size_live": 3018300,
+  "size_db": 3018300,
+  "live_eq_db": true,
+  "live_eq_local": true,
+  "db_eq_local": true
+ },
+ "2023SeatMatrix.pdf": {
+  "status": 200,
+  "live": "399e2270da614b89c3324000b9da5dc41485d42a6bc2f45f896d8f5380b0a8c3",
+  "db": "399e2270da614b89c3324000b9da5dc41485d42a6bc2f45f896d8f5380b0a8c3",
+  "local": "399e2270da614b89c3324000b9da5dc41485d42a6bc2f45f896d8f5380b0a8c3",
+  "size_live": 9317893,
+  "size_db": 9317893,
+  "live_eq_db": true,
+  "live_eq_local": true,
+  "db_eq_local": true
+ },
+ "2024ENGG_CAP1_CutOff.pdf": {
+  "status": 200,
+  "live": "1e2df4023e8f12ea4dda19d564281e3a5968577b94d640cd7647933065babd8c",
+  "db": "1e2df4023e8f12ea4dda19d564281e3a5968577b94d640cd7647933065babd8c",
+  "local": "1e2df4023e8f12ea4dda19d564281e3a5968577b94d640cd7647933065babd8c",
+  "size_live": 4136871,
+  "size_db": 4136871,
+  "live_eq_db": true,
+  "live_eq_local": true,
+  "db_eq_local": true
+ },
+ "2024ENGG_CAP2_CutOff.pdf": {
+  "status": 200,
+  "live": "38436ad4d418b6ba8de8a99da4e0fd6f44b02657183430b7d3622a6f4974bcbc",
+  "db": "38436ad4d418b6ba8de8a99da4e0fd6f44b02657183430b7d3622a6f4974bcbc",
+  "local": "38436ad4d418b6ba8de8a99da4e0fd6f44b02657183430b7d3622a6f4974bcbc",
+  "size_live": 4644290,
+  "size_db": 4644290,
+  "live_eq_db": true,
+  "live_eq_local": true,
+  "db_eq_local": true
+ },
+ "2024ENGG_CAP3_CutOff.pdf": {
+  "status": 200,
+  "live": "9db0899eaf0cd73a8bb00d065a06a434c9b949f05e8713d875a9daaa7172f18c",
+  "db": "9db0899eaf0cd73a8bb00d065a06a434c9b949f05e8713d875a9daaa7172f18c",
+  "local": "9db0899eaf0cd73a8bb00d065a06a434c9b949f05e8713d875a9daaa7172f18c",
+  "size_live": 3517458,
+  "size_db": 3517458,
+  "live_eq_db": true,
+  "live_eq_local": true,
+  "db_eq_local": true
+ },
+ "2024SeatMatrix.pdf": {
+  "status": 200,
+  "live": "9c6c90226fa5ee4a3720ef196ea477be114ba9263706dccb610f83c5d96e08ee",
+  "db": "9c6c90226fa5ee4a3720ef196ea477be114ba9263706dccb610f83c5d96e08ee",
+  "local": "9c6c90226fa5ee4a3720ef196ea477be114ba9263706dccb610f83c5d96e08ee",
+  "size_live": 10135589,
+  "size_db": 10135589,
+  "live_eq_db": true,
+  "live_eq_local": true,
+  "db_eq_local": true
+ }
+}

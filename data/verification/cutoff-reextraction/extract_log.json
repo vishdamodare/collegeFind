@@ -1,0 +1,486 @@
+[
+ {
+  "pdf": "2022ENGG_CAP1_CutOff.pdf",
+  "pages": 1349,
+  "cells": 21290,
+  "dups": [],
+  "ndups": 0,
+  "fallback_assign": 0,
+  "overflow_rows": 16,
+  "overflow_cells": 56,
+  "overflow_detail": [
+   [
+    103,
+    5
+   ],
+   [
+    389,
+    3
+   ],
+   [
+    847,
+    5
+   ],
+   [
+    849,
+    4
+   ],
+   [
+    851,
+    3
+   ],
+   [
+    890,
+    3
+   ],
+   [
+    909,
+    6
+   ],
+   [
+    911,
+    1
+   ],
+   [
+    998,
+    2
+   ],
+   [
+    1028,
+    9
+   ],
+   [
+    1028,
+    5
+   ],
+   [
+    1028,
+    1
+   ],
+   [
+    1030,
+    1
+   ],
+   [
+    1032,
+    2
+   ],
+   [
+    1087,
+    5
+   ],
+   [
+    1087,
+    1
+   ]
+  ],
+  "unpaired": 0,
+  "unpaired_ex": [],
+  "orphans": 0,
+  "orphan_ex": []
+ },
+ {
+  "pdf": "2022ENGG_CAP2_CutOff.pdf",
+  "pages": 1234,
+  "cells": 18394,
+  "dups": [],
+  "ndups": 0,
+  "fallback_assign": 0,
+  "overflow_rows": 0,
+  "overflow_cells": 0,
+  "overflow_detail": [],
+  "unpaired": 0,
+  "unpaired_ex": [],
+  "orphans": 0,
+  "orphan_ex": []
+ },
+ {
+  "pdf": "2022ENGG_CAP3_CutOff.pdf",
+  "pages": 1101,
+  "cells": 10692,
+  "dups": [],
+  "ndups": 0,
+  "fallback_assign": 0,
+  "overflow_rows": 0,
+  "overflow_cells": 0,
+  "overflow_detail": [],
+  "unpaired": 0,
+  "unpaired_ex": [],
+  "orphans": 0,
+  "orphan_ex": []
+ },
+ {
+  "pdf": "2023ENGG_CAP1_CutOff.pdf",
+  "pages": 1485,
+  "cells": 23919,
+  "dups": [],
+  "ndups": 0,
+  "fallback_assign": 0,
+  "overflow_rows": 32,
+  "overflow_cells": 104,
+  "overflow_detail": [
+   [
+    17,
+    3
+   ],
+   [
+    104,
+    5
+   ],
+   [
+    106,
+    1
+   ],
+   [
+    125,
+    1
+   ],
+   [
+    252,
+    4
+   ],
+   [
+    252,
+    2
+   ],
+   [
+    428,
+    3
+   ],
+   [
+    428,
+    8
+   ],
+   [
+    428,
+    1
+   ],
+   [
+    633,
+    6
+   ],
+   [
+    635,
+    1
+   ],
+   [
+    932,
+    5
+   ],
+   [
+    934,
+    6
+   ],
+   [
+    937,
+    1
+   ],
+   [
+    937,
+    1
+   ],
+   [
+    985,
+    4
+   ],
+   [
+    1001,
+    8
+   ],
+   [
+    1001,
+    1
+   ],
+   [
+    1003,
+    2
+   ],
+   [
+    1092,
+    2
+   ],
+   [
+    1097,
+    1
+   ],
+   [
+    1130,
+    8
+   ],
+   [
+    1130,
+    6
+   ],
+   [
+    1130,
+    2
+   ],
+   [
+    1132,
+    1
+   ],
+   [
+    1132,
+    2
+   ],
+   [
+    1132,
+    1
+   ],
+   [
+    1134,
+    4
+   ],
+   [
+    1183,
+    7
+   ],
+   [
+    1183,
+    4
+   ],
+   [
+    1183,
+    2
+   ],
+   [
+    1186,
+    1
+   ]
+  ],
+  "unpaired": 0,
+  "unpaired_ex": [],
+  "orphans": 0,
+  "orphan_ex": []
+ },
+ {
+  "pdf": "2023ENGG_CAP2_CutOff.pdf",
+  "pages": 1365,
+  "cells": 21138,
+  "dups": [],
+  "ndups": 0,
+  "fallback_assign": 0,
+  "overflow_rows": 1,
+  "overflow_cells": 1,
+  "overflow_detail": [
+   [
+    1099,
+    1
+   ]
+  ],
+  "unpaired": 0,
+  "unpaired_ex": [],
+  "orphans": 0,
+  "orphan_ex": []
+ },
+ {
+  "pdf": "2023ENGG_CAP3_CutOff.pdf",
+  "pages": 1216,
+  "cells": 12471,
+  "dups": [],
+  "ndups": 0,
+  "fallback_assign": 0,
+  "overflow_rows": 0,
+  "overflow_cells": 0,
+  "overflow_detail": [],
+  "unpaired": 0,
+  "unpaired_ex": [],
+  "orphans": 0,
+  "orphan_ex": []
+ },
+ {
+  "pdf": "2024ENGG_CAP1_CutOff.pdf",
+  "pages": 1590,
+  "cells": 31690,
+  "dups": [],
+  "ndups": 0,
+  "fallback_assign": 0,
+  "overflow_rows": 24,
+  "overflow_cells": 91,
+  "overflow_detail": [
+   [
+    102,
+    4
+   ],
+   [
+    279,
+    1
+   ],
+   [
+    279,
+    2
+   ],
+   [
+    453,
+    5
+   ],
+   [
+    683,
+    2
+   ],
+   [
+    1020,
+    1
+   ],
+   [
+    1063,
+    6
+   ],
+   [
+    1080,
+    3
+   ],
+   [
+    1185,
+    5
+   ],
+   [
+    1185,
+    5
+   ],
+   [
+    1185,
+    5
+   ],
+   [
+    1188,
+    4
+   ],
+   [
+    1188,
+    1
+   ],
+   [
+    1191,
+    12
+   ],
+   [
+    1191,
+    5
+   ],
+   [
+    1191,
+    2
+   ],
+   [
+    1193,
+    3
+   ],
+   [
+    1193,
+    1
+   ],
+   [
+    1195,
+    3
+   ],
+   [
+    1195,
+    4
+   ],
+   [
+    1195,
+    5
+   ],
+   [
+    1581,
+    4
+   ],
+   [
+    1583,
+    4
+   ],
+   [
+    1583,
+    4
+   ]
+  ],
+  "unpaired": 0,
+  "unpaired_ex": [],
+  "orphans": 0,
+  "orphan_ex": []
+ },
+ {
+  "pdf": "2024ENGG_CAP2_CutOff.pdf",
+  "pages": 1545,
+  "cells": 30820,
+  "dups": [],
+  "ndups": 0,
+  "fallback_assign": 0,
+  "overflow_rows": 13,
+  "overflow_cells": 14,
+  "overflow_detail": [
+   [
+    18,
+    2
+   ],
+   [
+    18,
+    1
+   ],
+   [
+    21,
+    1
+   ],
+   [
+    653,
+    1
+   ],
+   [
+    653,
+    1
+   ],
+   [
+    764,
+    1
+   ],
+   [
+    764,
+    1
+   ],
+   [
+    855,
+    1
+   ],
+   [
+    855,
+    1
+   ],
+   [
+    1135,
+    1
+   ],
+   [
+    1138,
+    1
+   ],
+   [
+    1138,
+    1
+   ],
+   [
+    1159,
+    1
+   ]
+  ],
+  "unpaired": 0,
+  "unpaired_ex": [],
+  "orphans": 0,
+  "orphan_ex": []
+ },
+ {
+  "pdf": "2024ENGG_CAP3_CutOff.pdf",
+  "pages": 1393,
+  "cells": 16735,
+  "dups": [],
+  "ndups": 0,
+  "fallback_assign": 0,
+  "overflow_rows": 0,
+  "overflow_cells": 0,
+  "overflow_detail": [],
+  "unpaired": 0,
+  "unpaired_ex": [],
+  "orphans": 0,
+  "orphan_ex": []
+ }
+]

@@ -1,0 +1,120 @@
+{
+ "dbwrong": [
+  [
+   "0314692010",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain Technology)",
+   2024
+  ],
+  [
+   "0318392010",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain Technology)",
+   2024
+  ],
+  [
+   "0319292010",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain Technology)",
+   2024
+  ],
+  [
+   "0319692010",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain Technology)",
+   2024
+  ],
+  [
+   "0319992010",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain Technology)",
+   2024
+  ],
+  [
+   "0321192010",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain Technology)",
+   2024
+  ],
+  [
+   "0321492010",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain Technology)",
+   2024
+  ],
+  [
+   "0322492010",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain Technology)",
+   2024
+  ],
+  [
+   "0626992610",
+   "Electrical and Computer",
+   "Electrical and Computer Engineering",
+   2024
+  ],
+  [
+   "0628392010",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain Technology)",
+   2024
+  ],
+  [
+   "0630492610",
+   "Electrical and Computer",
+   "Electrical and Computer Engineering",
+   2024
+  ],
+  [
+   "0628992010",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain Technology)",
+   2023
+  ],
+  [
+   "0335392010",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain Technology)",
+   2024
+  ],
+  [
+   "0344592010",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain Technology)",
+   2024
+  ],
+  [
+   "0627392010",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain",
+   "Computer Science and Engineering (Internet of Things and Cyber Security Including Block Chain Technology)",
+   2024
+  ]
+ ],
+ "ren": [],
+ "smcut": [],
+ "intra": [
+  [
+   "0626992610",
+   [
+    "cut",
+    2022
+   ],
+   {
+    "Electrical and Computer Engineering": 2,
+    "Electrical and ComputerEngineering": 1
+   }
+  ],
+  [
+   "0630492610",
+   [
+    "cut",
+    2022
+   ],
+   {
+    "Electrical and Computer Engineering": 2,
+    "Electrical and ComputerEngineering": 1
+   }
+  ]
+ ]
+}

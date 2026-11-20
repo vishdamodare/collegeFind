@@ -1,0 +1,6 @@
+pdfplumber
+pymupdf
+pandas
+openpyxl
+pytest
+# camelot-py and pytesseract added when a parser actually needs them (see docs/data-sources.md)

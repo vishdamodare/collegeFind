@@ -1,0 +1,21 @@
+0.5 GOPENS STATE_LEVEL None computer groups 173 {'safer_historical': 0, 'moderate': 0, 'ambitious': 173}
+35 GOPENS STATE_LEVEL None  groups 640 {'safer_historical': 12, 'moderate': 1, 'ambitious': 627}
+62.4 GOBCS STATE_LEVEL 2024-25 computer groups 92 {'safer_historical': 7, 'moderate': 1, 'ambitious': 84}
+80 GOPENS STATE_LEVEL None civil groups 61 {'safer_historical': 43, 'moderate': 0, 'ambitious': 18}
+92.5 GOPENS STATE_LEVEL None computer groups 173 {'safer_historical': 91, 'moderate': 13, 'ambitious': 69}
+99.9 GOPENS STATE_LEVEL 2023-24  groups 427 {'safer_historical': 401, 'moderate': 26, 'ambitious': 0}
+92.5 GSCS STATE_LEVEL None information groups 33 {'safer_historical': 22, 'moderate': 4, 'ambitious': 7}
+80 LOPENH HU_TO_HU None computer groups 443 {'safer_historical': 249, 'moderate': 16, 'ambitious': 178}
+62.4 GOPENS HU_TO_OHU None  groups 0 {'safer_historical': 0, 'moderate': 0, 'ambitious': 0}
+99.9 EWS STATE_LEVEL 2022-23 mechanical groups 184 {'safer_historical': 184, 'moderate': 0, 'ambitious': 0}
+35 GOPENS None None electronics groups 103 {'safer_historical': 1, 'moderate': 0, 'ambitious': 102}
+92.5 GOPENH HU_TO_HU 2024-25 computer groups 389 {'safer_historical': 354, 'moderate': 12, 'ambitious': 23}
+80 TFWS STATE_LEVEL None  groups 1707 {'safer_historical': 770, 'moderate': 71, 'ambitious': 856}
+0.5 TFWS STATE_LEVEL 2024-25  groups 1484 {'safer_historical': 0, 'moderate': 2, 'ambitious': 1472}
+99.9 GOPENS OHU_TO_OHU None computer groups 0 {'safer_historical': 0, 'moderate': 0, 'ambitious': 0}
+62.4 GSTS STATE_LEVEL None computer groups 104 {'safer_historical': 31, 'moderate': 2, 'ambitious': 71}
+NEET 501 {'detail': 'NEET uses a separate rank-based engine (Phase 6)'}
+BOGUS 400
+101 422
+null pct rows 26 zero pct rows in db 0
+predict combos 16 items 6013 records 25146 checks 55363 ok 55363 bad []
