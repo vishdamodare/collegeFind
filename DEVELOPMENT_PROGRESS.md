@@ -15,7 +15,7 @@ Importer (store PDF + sha256 → import_job → pending cutoff_records), categor
 ## Phase 2–3 (2026-11-10) – data import and student site (done, with limits in KNOWN_LIMITATIONS.md)
 * Parsers: CET cut-off lists (position-aligned text grid, parser 0.6.0) and seat matrices (0.2.0). Handles 2022/2023/2024 layouts, two-line stage labels, page continuations, the minority and "MH seats for All-India candidates" sections, TFWS zeros; reports (never guesses) unrecognised rows and overflow columns.
 * Importers: idempotent per document (sha256), header cross-check (year/round/scope), get-or-create colleges/branches/courses, everything inserted as `pending`.
-* **Neon (Postgres 18, ap-southeast-1)**: 32 tables (migrations 0001–0003). Loaded: 187,149 cutoff records (2022-23, 2023-24, 2024-25 × CAP rounds 1–3), 361 colleges, 2,187 college-courses, 5,743 seat-matrix rows.
+* **Neon (Postgres 18, ap-southeast-1)**: 32 tables (migrations 0001–0003). Loaded: 187,415 cutoff records (2022-23, 2023-24, 2024-25 × CAP rounds 1–3), 361 colleges, 2,187 college-courses, 5,743 seat-matrix rows.
 * API: `/meta`, `/colleges`, `/colleges/{slug}`, `/cutoffs`, `/trends`, `/trend-options`, `/predict` (grouped, with history). `/meta` cached 60 s.
 * Site (Next.js 16): home, college search, college profile (intake + trend chart), cutoff explorer, predictor. New brand mark and design system.
 * Verification: see "How the data was checked" in KNOWN_LIMITATIONS.md.

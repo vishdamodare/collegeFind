@@ -1,0 +1,20 @@
+stored rows 392092
+db files ['2022ENGG_CAP1_CutOff.pdf', '2022ENGG_CAP2_CutOff.pdf', '2022ENGG_CAP3_CutOff.pdf', '2023ENGG_CAP1_CutOff.pdf', '2023ENGG_CAP2_CutOff.pdf', '2023ENGG_CAP3_CutOff.pdf', '2024ENGG_CAP1_CutOff.pdf', '2024ENGG_CAP2_CutOff.pdf', '2024ENGG_CAP3_CutOff.pdf', '2025ENGG_CAP1_CutOff.pdf', '2025ENGG_CAP2_CutOff.pdf', '2025ENGG_CAP3_CutOff.pdf', '2025ENGG_CAP4_CutOff.pdf', '2026ENGG_CAP1_MH_CutOff_V1.pdf', '2026ENGG_CAP2_MH_CutOff.pdf', '2026ENGG_CAP3_MH_CutOff.pdf', '2026ENGG_CAP4_MH_CutOff.pdf']
+file                         printed  stored    ovr  unexp  phant
+2025ENGG_CAP1_CutOff.pdf       34433   34433      0      0      0
+2025ENGG_CAP2_CutOff.pdf       33463   33463      0      0      0
+2025ENGG_CAP3_CutOff.pdf       17983   17983      0      0      0
+2025ENGG_CAP4_CutOff.pdf       13745   13745      0      0      0
+2026ENGG_CAP1_MH_CutOff_V1.pdf   36059   36059      0      0      0
+2026ENGG_CAP2_MH_CutOff.pdf    34391   34391      0      0      0
+2026ENGG_CAP3_MH_CutOff.pdf    19839   19839      0      0      0
+2026ENGG_CAP4_MH_CutOff.pdf    14764   14764      0      0      0
+total printed 204677 missing 0 unexpl 0 phantom 0
+pages w/ pairs but no stored: 0 Counter()
+printed zero pcts 36
+null pct rows 62 zero pct rows 0
+[('2024ENGG_CAP1_CutOff.pdf', 10), ('2024ENGG_CAP2_CutOff.pdf', 7), ('2024ENGG_CAP3_CutOff.pdf', 9), ('2025ENGG_CAP1_CutOff.pdf', 15), ('2025ENGG_CAP2_CutOff.pdf', 9), ('2025ENGG_CAP3_CutOff.pdf', 5), ('2025ENGG_CAP4_CutOff.pdf', 7)]
+null rows with rank null 0
+dup groups 0
+unique idx? [('CREATE UNIQUE INDEX cutoff_records_pkey ON public.cutoff_records USING btree (id)',), ('CREATE UNIQUE INDEX uq_cutoff_cell ON public.cutoff_records USING btree (college_course_id, round_id, stage_label, category_id, seat_type_id, source_document_id)',)]
+pages with bad source_page 0

@@ -1,15 +1,16 @@
 # Known limitations (updated after the 10 Nov 2026 multi-agent audit; see docs/verification.md)
 
 ## Data that is NOT in the database
-* **Overflow columns: 86 stage-rows, ≈266 cells (0.14% of 187,149) are missing.** Very wide CET Cell tables print their last
-  few columns (usually `DEF*`, `PWD*`, `ORPHAN`, `EWS`) at the top of the *next page*, with no course name or stage label.
-  With several wide tables on one page they cannot be attributed safely, so they are **not stored**; each one is recorded as an
-  `import_validation_errors` row (page + raw values). Affected files: 2022 R1 (16 rows), 2023 R1 (32), 2023 R2 (1), 2024 R1 (24), 2024 R2 (13).
-  Shown on the site as "Data not available". Fix = a geometry-aware parser or a manual pass.
+* ~~Overflow columns~~ **fixed 24 Nov 2026**: the 266 cells that very wide tables print on the next page are now stored
+  (parser 0.8.0 attributes each band by same-y alignment with the previous page; see `docs/verification.md`).
 * **Only Maharashtra & Minority seat lists** are imported. All-India lists (`*_AI_CutOff.pdf`) are JEE-based and need their own
   parser/exam mapping; JEE Main and NEET UG are not implemented.
 * **No official source loaded yet for:** college address/district, fees, placements, NIRF rank, hostel, AICTE approval. The site says "Data not available".
-* **Round 4 / additional rounds and the 2025–2026 lists are not imported** (the portal publishes them; the parser handles the same layouts but they were not requested).
+* **2025-26 and 2026-27 imported and verified 24 Nov 2026** (automated audit, see docs/verification.md): CAP Rounds I–IV of both years
+  (99,624 + 105,053 cut-offs) and both seat matrices (2,181 + 2,307 courses).
+  - 2026 seat matrix prints two orphan columns (OrphanI / OrphanN); `orphan_seats` stores their sum.
+  - 10 of its 2,307 pages (1849–1853, 1955–1959) break pdfminer (cmap format 12 font) and are read with PyMuPDF; independent check 2,307 / 2,307.
+  - "IImperial College of Engineering" (03726) is the 2026 PDFs' own spelling.
 
 ## Data quality caveats
 * **Verification status.** 165,859 cutoff records (2022-23 R2–R3, 2023-24 R1–R3, 2024-25 R1–R3) and all 5,743 seat-matrix rows are `verified`: they matched an independent re-extraction, a visual audit, a completeness check and a source-file hash check (`data/verification/`, `audit_logs`). **This is automated verification, not review by a CET Cell official or a human admin** (`human_review=false`). **2022-23 Round 1 (21,290 records) stays `pending`/"preview"** until the CET Cell title anomaly is confirmed. No admin approval UI exists yet.

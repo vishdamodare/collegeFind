@@ -1,0 +1,2 @@
+new courses 361 | names differing from seat matrix: 20 are seat-matrix truncations of the full DB name; other differences: 0 []
+courses not in either seat matrix, by first round seen: {'2026-27 R2': 15, '2026-27 R3': 5, '2026-27 R4': 3, '2025-26 R2': 4}

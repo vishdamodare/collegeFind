@@ -1,0 +1,38 @@
+[
+ {
+  "pdf": "2025ENGG_CAP1_CutOff.pdf",
+  "pages": 1566,
+  "cells": 34422,
+  "dups": [],
+  "ndups": 0,
+  "fallback_assign": 0,
+  "overflow_rows": 5,
+  "overflow_cells": 11,
+  "overflow_detail": [
+   [
+    1171,
+    7
+   ],
+   [
+    1171,
+    1
+   ],
+   [
+    1173,
+    1
+   ],
+   [
+    1175,
+    1
+   ],
+   [
+    1539,
+    1
+   ]
+  ],
+  "unpaired": 0,
+  "unpaired_ex": [],
+  "orphans": 0,
+  "orphan_ex": []
+ }
+]
