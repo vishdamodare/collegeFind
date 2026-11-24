@@ -1,0 +1,22 @@
+[
+ {
+  "pdf": "2026ENGG_CAP2_MH_CutOff.pdf",
+  "pages": 1540,
+  "cells": 34390,
+  "dups": [],
+  "ndups": 0,
+  "fallback_assign": 0,
+  "overflow_rows": 1,
+  "overflow_cells": 1,
+  "overflow_detail": [
+   [
+    813,
+    1
+   ]
+  ],
+  "unpaired": 0,
+  "unpaired_ex": [],
+  "orphans": 0,
+  "orphan_ex": []
+ }
+]

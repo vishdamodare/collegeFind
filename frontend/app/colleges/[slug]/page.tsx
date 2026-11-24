@@ -35,38 +35,31 @@ export default async function CollegePage({ params }: { params: Promise<{ slug: 
           {c.university && <Pill>{c.university}</Pill>}
         </div>
       </PageHeader>
-      <div className="mx-auto max-w-6xl px-4 py-8">
+      <div className="mx-auto max-w-6xl px-4 py-5 md:py-8">
         <DataBanner meta={meta} />
 
-        <dl className="mt-6 grid grid-cols-3 gap-px overflow-hidden rounded-2xl bg-navy/10 text-sm shadow-[var(--shadow-card)]">
-          <div className="bg-white p-4">
-            <dt className="text-xs font-medium uppercase tracking-wide text-navy/50">Total seats{total ? ` · ${total.year}` : ""}</dt>
-            <dd className={total ? "mt-1 text-lg font-bold" : "mt-1 text-navy/50"}>{total ? `${total.sum} seats` : "Data not available"}</dd>
-            {total && <p className="mt-0.5 text-xs text-navy/55">Across {total.n} branches (CAP seat matrix)</p>}
-          </div>
-          <div className="bg-white p-4">
-            <dt className="text-xs font-medium uppercase tracking-wide text-navy/50">Branches</dt>
-            <dd className="mt-1 text-lg font-bold">{c.branches.length}</dd>
-          </div>
-          <div className="bg-white p-4">
-            <dt className="text-xs font-medium uppercase tracking-wide text-navy/50">Type</dt>
-            <dd className="mt-1 font-semibold capitalize">{c.ownership ?? "—"}</dd>
-          </div>
+        <dl className="card mt-5 grid grid-cols-3 divide-x divide-line">
+          {[[total ? total.sum.toLocaleString() : "—", total ? `CAP seats · ${total.year}` : "CAP seats"], [String(c.branches.length), "Branches"], [c.ownership ?? "—", "Type"]].map(([v, l]) => (
+            <div key={l} className="flex flex-col-reverse px-3 py-3.5 md:px-5 md:py-4">
+              <dt className="mt-0.5 text-xs text-muted">{l}</dt>
+              <dd className="num text-xl font-bold capitalize md:text-2xl">{v}</dd>
+            </div>
+          ))}
         </dl>
-        <p className="mt-3 text-xs text-muted">Fees, placements, address and rankings aren&apos;t available yet — we only show data from official sources.</p>
+        <p className="mt-3 text-xs text-muted">Fees, placements, address and rankings aren&apos;t available yet. We only show data from official sources.</p>
 
-        <h2 className="mt-12 text-2xl font-bold tracking-tight">Branches <span className="text-navy/40">({c.branches.length})</span></h2>
-        <ul className="mt-4 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white shadow-[var(--shadow-card)]">
+        <h2 className="mt-10 text-xl font-bold tracking-tight md:text-2xl">Branches <span className="text-muted">({c.branches.length})</span></h2>
+        <ul className="card mt-3 divide-y divide-line overflow-hidden">
           {c.branches.map((b) => (
-            <li key={b.choice_code} className="p-4 transition hover:bg-navy/[.02]">
+            <li key={b.choice_code} className="p-4 md:p-5">
               <BranchBlock slug={c.slug} code={b.choice_code} hasTrend={(b.cutoff_years ?? []).length > 0}
                 href={`/cutoffs?college=${c.slug}&branch=${encodeURIComponent(b.name)}`}
-                left={<div><p className="font-medium">{b.name}</p><p className="text-xs text-navy/55">Choice code {b.choice_code}{(b.cutoff_years ?? []).length ? ` · cutoffs: ${(b.cutoff_years ?? []).join(", ")}` : " · no cutoff records"}</p></div>}
+                left={<div className="min-w-0"><p className="font-semibold leading-snug">{b.name}</p><p className="mt-0.5 text-xs text-muted">Code {b.choice_code}{(b.cutoff_years ?? []).length ? ` · cutoffs ${(b.cutoff_years ?? []).map((y) => y.slice(0, 4)).join(", ")}` : " · no cutoff records"}</p></div>}
                 intake={b.intake ? (
-                  <p className="mt-2 text-xs text-navy/65">
-                    <b className="text-navy">{b.intake.si} seats</b> <span className="text-navy/55">({b.intake.year})</span> — Maharashtra {b.intake.ms_seats} · Minority {b.intake.minority_seats} · All India {b.intake.all_india_seats} · Institute {b.intake.institute_seats}
+                  <p className="mt-2 text-xs text-muted">
+                    <b className="num text-navy">{b.intake.si} seats</b> ({b.intake.year}): Maharashtra {b.intake.ms_seats} · Minority {b.intake.minority_seats} · All India {b.intake.all_india_seats} · Institute {b.intake.institute_seats}
                   </p>
-                ) : <p className="mt-2 text-xs text-navy/45">Seat count not published</p>} />
+                ) : <p className="mt-2 text-xs text-muted">Seat count not published</p>} />
             </li>
           ))}
         </ul>

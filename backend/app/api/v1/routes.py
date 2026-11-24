@@ -176,7 +176,7 @@ def cutoffs(college_slug: Optional[str] = None, branch: str = "", category: Opti
     if year: stmt = stmt.where(AcademicYear.label == year)
     if round: stmt = stmt.where(CounsellingRound.round_no == round)
     total = db.scalar(select(func.count()).select_from(stmt.subquery()))
-    rows = db.execute(stmt.order_by(College.name, CollegeCourse.name_raw, CR.category_code_raw, CR.stage, CR.stage_label)
+    rows = db.execute(stmt.order_by(College.name, CollegeCourse.name_raw, CollegeCourse.choice_code, SeatType.code, CR.category_code_raw, CR.stage, CR.stage_label, CR.id)
                       .offset((page - 1) * page_size).limit(page_size)).all()
     return {"total": total, "page": page, "page_size": page_size, "items": [_row(r) for r in rows]}
 

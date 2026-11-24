@@ -50,3 +50,43 @@ def test_choice_code_must_match_its_institute():
     res, st = MatrixResult(), _State()
     consume_page(PAGE1.split("0100219110")[0] + "0999919110 Civil Engineering 60 60 0 0 0 1", 1, res, st)
     assert len(res.errors) == 1 and not res.rows
+
+
+def test_2026_two_orphan_columns_do_not_shift_the_intake():
+    # 2026 prints "OrphanI OrphanN" (Institutional / Non-Institutional): 7 numbers instead of 6.
+    from parsers.cet_seat_matrix import MatrixResult, _State, consume_page
+    text = ("01002 - Government College of Engineering, Amravati\n"
+            "Government Autonomous CAP Seats:60\n"
+            "Choice Code Course Name SI MS Seats Minority Seats All India Institute Seats OrphanI OrphanN\n"
+            "0100219110 Civil Engineering 60 60 0 0 0 1 2\n")
+    res, st = MatrixResult(), _State()
+    consume_page(text, 1, res, st)
+    r = res.rows[0]
+    assert (r.course_name, r.si, r.ms_seats, r.minority_seats, r.all_india_seats, r.institute_seats, r.orphan_seats) == \
+        ("Civil Engineering", 60, 60, 0, 0, 0, 3)
+    assert res.errors == []
+
+
+def test_shifted_columns_are_reported_not_stored():
+    # Old one-orphan header but a row with an extra number: the sum check must refuse it.
+    from parsers.cet_seat_matrix import MatrixResult, _State, consume_page
+    text = ("01002 - Government College of Engineering, Amravati\n"
+            "Government Autonomous CAP Seats:60\n"
+            "Choice Code Course Name SI MS Seats Minority Seats All India Institute Seats Orphan\n"
+            "0100219110 Civil Engineering 60 60 0 0 0 1 0\n")
+    res, st = MatrixResult(), _State()
+    consume_page(text, 1, res, st)
+    assert res.rows == [] and "do not add up" in res.errors[0][1]
+
+
+def test_fitz_fallback_keeps_left_to_right_order_within_a_row(tmp_path):
+    # 2026: some pages break pdfminer; the PyMuPDF fallback must rebuild "status CAP Seats:N" even when
+    # the right-hand words sit a fraction of a point higher than the left-hand ones.
+    import fitz
+    from parsers.cet_seat_matrix import fitz_page_text
+    d = fitz.open(); p = d.new_page()
+    p.insert_text((300, 100.0), "CAP Seats:60"); p.insert_text((50, 100.2), "Government Autonomous")
+    p.insert_text((50, 120), "0100219110 Civil Engineering 60 60 0 0 0 1 0")
+    f = tmp_path / "m.pdf"; d.save(f)
+    assert fitz_page_text(str(f), 1).split("\n") == ["Government Autonomous CAP Seats:60",
+                                                     "0100219110 Civil Engineering 60 60 0 0 0 1 0"]

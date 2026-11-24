@@ -1,0 +1,9 @@
+2025ENGG_CAP1_CutOff.pdf         db  34433  exact  34280  wrapped-suffix  142  unexplained 0  db-only 11 = overflow 11: True
+2025ENGG_CAP2_CutOff.pdf         db  33463  exact  33421  wrapped-suffix   42  unexplained 0  db-only 0 = overflow 0: True
+2025ENGG_CAP3_CutOff.pdf         db  17983  exact  17967  wrapped-suffix   16  unexplained 0  db-only 0 = overflow 0: True
+2025ENGG_CAP4_CutOff.pdf         db  13745  exact  13735  wrapped-suffix   10  unexplained 0  db-only 0 = overflow 0: True
+2026ENGG_CAP1_MH_CutOff_V1.pdf   db  36059  exact  36005  wrapped-suffix    0  unexplained 0  db-only 54 = overflow 54: True
+2026ENGG_CAP2_MH_CutOff.pdf      db  34391  exact  34390  wrapped-suffix    0  unexplained 0  db-only 1 = overflow 1: True
+2026ENGG_CAP3_MH_CutOff.pdf      db  19839  exact  19837  wrapped-suffix    0  unexplained 0  db-only 2 = overflow 2: True
+2026ENGG_CAP4_MH_CutOff.pdf      db  14764  exact  14764  wrapped-suffix    0  unexplained 0  db-only 0 = overflow 0: True
+{'db': 204677, 'exact': 204399, 'wrapped': 210, 'unexplained': 0, 'dbonly': 68, 'overflow': 68}

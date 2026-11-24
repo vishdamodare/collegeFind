@@ -38,7 +38,8 @@ export type PredictResponse = {
 
 /** Decode CET Cell category codes (e.g. LOBCH → "OBC", group "Ladies"). Last letter = seat level, already implied by seat type. */
 const CASTE: Record<string, string> = { OPEN: "Open", OBC: "OBC", SEBC: "SEBC", SC: "SC", ST: "ST", VJ: "VJ / DT-A", NT1: "NT-B", NT2: "NT-C", NT3: "NT-D" };
-const SPECIAL: Record<string, string> = { EWS: "EWS", TFWS: "Tuition Fee Waiver", MI: "Minority", ORPHAN: "Orphan" };
+// ORPHANI / ORPHANN appear from 2026 (2026 seat matrix legend: Orphan Institutional / Orphan Non-Institutional).
+const SPECIAL: Record<string, string> = { EWS: "EWS", TFWS: "Tuition Fee Waiver", MI: "Minority", ORPHAN: "Orphan", ORPHANI: "Orphan · Institutional", ORPHANN: "Orphan · Non-institutional" };
 const GROUP: Record<string, string> = { G: "General", L: "Ladies", DEF: "Defence", DEFR: "Defence", PWD: "PwD", PWDR: "PwD" };
 export const CAT_GROUPS = ["General", "Ladies", "Other", "Defence", "PwD"];
 export function catInfo(code: string): { group: string; label: string } {
