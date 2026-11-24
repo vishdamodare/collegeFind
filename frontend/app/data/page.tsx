@@ -40,7 +40,7 @@ export default function DataPage() {
         <h2 className="mt-14 text-2xl font-bold tracking-tight">What we do <u>not</u> claim</h2>
         <ul className="mt-4 list-disc space-y-3 pl-5 text-[15px] leading-relaxed">
           <li><b>This is automated cross-checking, not review by the CET Cell.</b> The values match the published PDFs; we cannot vouch for the PDFs themselves.</li>
-          <li><b>About 266 values (0.14%) are missing.</b> Very wide tables print their last columns on the next page without a course name; we could not attribute them safely, so we leave them out and show “Data not available”.</li>
+          <li><b>Every printed cut-off value is stored.</b> Very wide tables print their last columns on the next page without a course name; we match those 266 values to their course by their exact position on the page, and only when the match is unique.</li>
           <li><b>2022-23 Round 1 is marked “preview”.</b> The file is titled “All India Seats” by the CET Cell, but its content is the Maharashtra list. We are waiting for confirmation.</li>
           <li><b>2024 ranks are not one scale.</b> The official 2024 lists print ranks that are not comparable across categories. That is how they are published, so the predictor compares percentiles only.</li>
           <li><b>COEP appears twice</b> (codes 06006 and 16006) because the CET Cell re-coded the institution in 2024.</li>
