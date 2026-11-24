@@ -142,15 +142,27 @@ def test_2022_minority_candidature_section_with_MH_row_label():
     assert not [e for e in p.res.errors if "Unrecognised" in e[1]]
 
 
-def test_page_width_overflow_band_is_reported_as_gap_and_never_attributed():
+def test_page_width_overflow_band_is_attributed_by_y_position_to_the_previous_page():
     # 2022 CAP I p.389 holds only the overflow columns 'DEFROBCS ORPHAN EWS' of a table too wide for p.388.
+    # Its header/rank/percentile rows sit at the same y as that table's rows on p.388.
     p = CetCutoffParser()
     p.feed_page(388, _fx("cet2022_cap1_p388_words.json"))
-    before = len(p.res.cells)
     p.feed_page(389, _fx("cet2022_cap1_p389_words.json"))
-    assert len(p.res.cells) == before                       # nothing invented from the overflow page
-    gaps = [e for e in p.res.errors if e[0] == 389]
-    assert any("Overflow band" in e[1] for e in gaps) and len(gaps) == 3   # header + rank row + percentile row
+    got = {(c.choice_code, c.seat_type_code, c.stage_label, c.category_code): (c.closing_rank, c.closing_percentile)
+           for c in p.res.cells if c.page == 389}
+    assert got == {("0321524510", "STATE_LEVEL", "I", "DEFROBCS"): (3244, Decimal("98.1223099")),
+                   ("0321524510", "STATE_LEVEL", "I", "ORPHAN"): (91883, Decimal("39.4196471")),
+                   ("0321524510", "STATE_LEVEL", "I", "EWS"): (983, Decimal("99.3529240"))}
+    assert p.res.errors == []
+
+
+def test_overflow_band_without_previous_page_stays_a_reported_gap():
+    # Without the wide page there is nothing to align to: never guess.
+    p = CetCutoffParser()
+    p.header = [(100.0, "GOPENS")]                           # stale header from an unrelated table
+    p.feed_page(389, _fx("cet2022_cap1_p389_words.json"))
+    assert p.res.cells == []
+    assert sum("Overflow band" in e[1] for e in p.res.errors) == 3   # header + rank row + percentile row
 
 
 def test_2023_round3_mh_seats_for_all_india_candidates_is_its_own_section_not_state_level():

@@ -27,7 +27,33 @@ def ownership(status):
     return None
 
 
-def run(path, url, year_label, round_no, allow_header_mismatch=None):
+ROMAN = {"I": 1, "II": 2, "III": 3, "IV": 4, "V": 5}
+
+
+def read_header(path):
+    """(year label, round number, scope) as printed in page 1's title. scope: 'maharashtra' | 'all_india' | None."""
+    import pdfplumber
+    with pdfplumber.open(path) as pdf:
+        t = re.sub(r"\s+", " ", pdf.pages[0].extract_text() or "")
+    title = t[t.find("Cut Off List"):][:400]
+    y = re.search(r"(20\d\d-\d\d)", title)
+    r = re.search(r"CAP Round\s*-?\s*([IVX]+)\b", title)
+    scope = "maharashtra" if re.search(r"Maharashtra (&|and) Minority Seats|Maharashtra State Seats", title) else \
+        "all_india" if "All India Seats" in title else None
+    return (y.group(1) if y else None), (ROMAN.get(r.group(1)) if r else None), scope
+
+
+def load_parsed(path):
+    """Cached parse from data/parsed/<file>.pkl when it was made by the current parser; otherwise parse now."""
+    pkl = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(path))), "parsed", os.path.basename(path) + ".pkl")
+    if os.path.exists(pkl):
+        ver, res = pickle.load(open(pkl, "rb"))
+        if ver == PARSER_VERSION:
+            return res
+    return parse_pdf(path)
+
+
+def run(path, url, year_label, round_no, allow_header_mismatch=None, source_base="https://fe2025"):
     data = open(path, "rb").read()
     sha = hashlib.sha256(data).hexdigest()
     h_year, h_round, h_scope = read_header(path)
@@ -45,7 +71,9 @@ def run(path, url, year_label, round_no, allow_header_mismatch=None):
         auth = s.scalar(select(CounsellingAuthority).where(CounsellingAuthority.code == "MAHA_CET_CELL"))
         year = s.scalar(select(AcademicYear).where(AcademicYear.label == year_label))
         course = s.scalar(select(Course).where(Course.code == "BE_BTECH"))
-        src = s.scalar(select(DataSource).where(DataSource.base_url.like("https://fe2025%")))
+        src = s.scalar(select(DataSource).where(DataSource.base_url.like(source_base + "%")))
+        if src is None:
+            sys.exit(f"No data_sources row whose base_url starts with {source_base}")
         seat = {t.code: t for t in s.scalars(select(SeatType))}
         doc = UploadedDocument(data_source_id=src.id, source_url=url, original_filename=os.path.basename(path),
                                storage_uri="file://" + os.path.abspath(path), sha256=sha, size_bytes=len(data),
@@ -116,5 +144,6 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("file"); ap.add_argument("url"); ap.add_argument("year"); ap.add_argument("round", type=int)
     ap.add_argument("--allow-header-mismatch", metavar="REASON")
+    ap.add_argument("--source-base", default="https://fe2025", help="data_sources.base_url prefix, e.g. https://fe2026")
     a = ap.parse_args()
-    run(a.file, a.url, a.year, a.round, a.allow_header_mismatch)
+    run(a.file, a.url, a.year, a.round, a.allow_header_mismatch, a.source_base)

@@ -25,7 +25,7 @@ def load(path):
     return parse_matrix_pdf(path)
 
 
-def run(path, url, year_label):
+def run(path, url, year_label, source_base="https://fe2025"):
     data = open(path, "rb").read()
     sha = hashlib.sha256(data).hexdigest()
     res = load(path)
@@ -36,7 +36,9 @@ def run(path, url, year_label):
             sys.exit("Document already imported (same sha256).")
         year = s.scalar(select(AcademicYear).where(AcademicYear.label == year_label))
         course = s.scalar(select(Course).where(Course.code == "BE_BTECH"))
-        src = s.scalar(select(DataSource).where(DataSource.base_url.like("https://fe2025%")))
+        src = s.scalar(select(DataSource).where(DataSource.base_url.like(source_base + "%")))
+        if src is None:
+            sys.exit(f"No data_sources row whose base_url starts with {source_base}")
         doc = UploadedDocument(data_source_id=src.id, source_url=url, original_filename=os.path.basename(path),
                                storage_uri="file://" + os.path.abspath(path), sha256=sha, size_bytes=len(data),
                                academic_year_id=year.id, publication_date=res.published)
@@ -90,4 +92,5 @@ def run(path, url, year_label):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("file"); ap.add_argument("url"); ap.add_argument("year")
-    a = ap.parse_args(); run(a.file, a.url, a.year)
+    ap.add_argument("--source-base", default="https://fe2025", help="data_sources.base_url prefix, e.g. https://fe2026")
+    a = ap.parse_args(); run(a.file, a.url, a.year, a.source_base)

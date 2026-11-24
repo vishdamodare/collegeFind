@@ -12,7 +12,7 @@ from dataclasses import dataclass, field
 from decimal import Decimal, InvalidOperation
 from typing import Optional
 
-PARSER_NAME, PARSER_VERSION = "cet_cutoff_text_grid", "0.7.1"
+PARSER_NAME, PARSER_VERSION = "cet_cutoff_text_grid", "0.8.0"
 
 # Section headings exactly as printed -> seat_types.code
 SECTIONS = {
@@ -37,10 +37,14 @@ RE_PCT = re.compile(r"^\((\d{1,3}(?:\.\d+)?)\)$")
 RE_STAGE = re.compile(r"^(I|II|III|IV|V|VI|VII|VIII|IX|X|MH)(-Non)?$")
 # Printed footer lines that legitimately follow the tables.
 FOOTER_PREFIXES = ("Legends", "PWDR", "*", "Maharashtra State Seats - Cut Off", "Stage", "D ", "i ", "r ", "Degree", "Cut Off", "Master", "S S")
-# Page-width overflow: very wide tables print their last few columns at the top of the NEXT page, with no course name
-# or stage label. They cannot be attributed safely, so they are reported as data gaps (never guessed).
+# Page-width overflow: very wide tables print their last few columns on the NEXT page, with no course name or stage
+# label. That page is the right-hand strip of the wide page: the band's header and value rows sit at exactly the same
+# y-positions as the table's header and stage rows on the previous page. A band is attributed only when its header
+# matches exactly ONE table header there and each value row matches exactly ONE stage row; otherwise it stays a
+# reported data gap (never guessed).
 RE_CATCODE = re.compile(r"^[A-Z][A-Z0-9]{1,11}$")
-ARTIFACT_LINES = {"S"}  # stray vertical-text letters from the rotated word "Stage"
+ARTIFACT_LINES = {"S"}
+Y_TOL = 2.5  # pt; same-y matching across the page split (observed offsets <= 0.5)  # stray vertical-text letters from the rotated word "Stage"
 
 
 @dataclass
@@ -89,6 +93,9 @@ class CetCutoffParser:
         self.header = []  # [(x_center, category_code)]
         self.pending = None  # (stage, [(x, rank_text)])
         self.gap = None  # active overflow band (see RE_CATCODE)
+        self.page_tables = []  # tables on the current page: {"y", "ctx", "rows": [[rank_y, label]]}
+        self.prev_tables = []  # same, for the previous page (overflow bands are attributed to these)
+        self.page_no = None
 
     def _err(self, page, msg, raw=""):
         self.res.errors.append((page, msg, raw))
@@ -108,6 +115,9 @@ class CetCutoffParser:
             self.pending = None
 
     def feed_page(self, page_no: int, words: list) -> None:
+        if page_no != self.page_no:
+            self.prev_tables = self.page_tables if self.page_no == page_no - 1 else []
+            self.page_tables, self.page_no = [], page_no
         for ws in _lines(words):
             text = " ".join(w["text"] for w in ws)
             first = ws[0]["text"]
@@ -120,10 +130,15 @@ class CetCutoffParser:
                 while i < len(ws) and not ws[i]["text"].startswith("("):
                     label += " " + ws[i]["text"]; i += 1
                 self.pending = (label, self.pending[1], False)
+                if self.page_tables and self.page_tables[-1]["rows"]:
+                    self.page_tables[-1]["rows"][-1][1] = label
                 self._emit(page_no, ws[i:]); self.pending = None
                 continue
             if self.pending and not first.startswith("("):
                 self._flush_orphan(page_no, "has no percentile row")
+            if self.gap and self.gap[2] and self.gap[2]["rank"] and not first.startswith("("):
+                self._err(page_no, "Overflow band rank row has no percentile row (data gap)", str(self.gap[2]["rank"])[:120])
+                self.gap[2]["rank"] = None
 
             if self.gap and (RE_COLLEGE.match(text) or RE_COURSE.match(text) or text in SECTIONS or first == "Stage"):
                 self.gap = None
@@ -153,15 +168,25 @@ class CetCutoffParser:
                 self.section = SECTIONS[text]; self.header = []; continue
             if first == "Stage":
                 self.header = [(_xc(w), w["text"]) for w in ws[1:]]
+                self.page_tables.append({"y": ws[0]["top"], "ctx": (self.inst, self.course, self.section, self.status, self.univ), "rows": []})
                 if not self.header:
                     self._err(page_no, "Stage header with no categories", text)
                 continue
             m = RE_STAGE.match(first)
             if m and at_margin and self.header:
                 self.pending = (first, [(_xc(w), w["text"]) for w in ws[1:]], bool(m.group(2)))
+                if self.page_tables:
+                    self.page_tables[-1]["rows"].append([ws[0]["top"], first])
                 continue
             if first.startswith("(") and self.pending:
                 self._emit(page_no, ws); self.pending = None
+                continue
+            if self.gap and self.gap[2] and all(w["text"] in ("S", "H", "O") for w in ws):
+                hdr = self.gap[2]["header"]  # wrapped suffix letter under an overflow-band header word
+                for w in ws:
+                    j = min(range(len(hdr)), key=lambda k: abs(hdr[k][0] - _xc(w)))
+                    if abs(hdr[j][0] - _xc(w)) <= 10 and hdr[j][1][-1] not in "SHO":
+                        hdr[j] = (hdr[j][0], hdr[j][1] + w["text"])
                 continue
             if self.header and all(w["text"] in ("S", "H", "O") for w in ws):
                 # A category code too long for its column wraps its LAST LETTER onto the next line (PWDROBC / S).
@@ -175,16 +200,46 @@ class CetCutoffParser:
             if text in ARTIFACT_LINES:
                 continue
             if self.header and all(RE_CATCODE.match(w["text"]) for w in ws) and not self.pending:
-                self.gap = [text, 0]  # overflow header: remember it, swallow its rank/percentile rows below
-                self._err(page_no, "Overflow band from a table wider than the page: columns not attributed (data gap)", text)
+                y = ws[0]["top"]
+                hits = [t for t in self.prev_tables if abs(t["y"] - y) <= Y_TOL]
+                band = None
+                if len(hits) == 1 and all(hits[0]["ctx"][:3]):
+                    band = {"table": hits[0], "header": [(_xc(w), w["text"]) for w in ws], "rank": None}
+                self.gap = [text, 0, band]  # overflow header: its rank/percentile rows below are attributed or reported
+                if not band:
+                    self._err(page_no, "Overflow band from a table wider than the page: columns not attributed (data gap)", text)
                 continue
             if self.gap and all(re.match(r"^(\d+|\(\d{1,3}(\.\d+)?\))$", w["text"]) for w in ws):
                 self.gap[1] += 1
-                self._err(page_no, "Overflow band values (data gap)", text[:120])
+                if not (self.gap[2] and self._band_row(page_no, ws)):
+                    self._err(page_no, "Overflow band values (data gap)", text[:120])
                 continue
             # Anything else inside a table region that we do not recognise must be loud, not skipped.
             if self.header and at_margin and not text.startswith(FOOTER_PREFIXES):
                 self._err(page_no, "Unrecognised row inside table", text[:120])
+
+    def _band_row(self, page, ws):
+        """One rank or percentile row of an attributed overflow band. False = cannot attribute (caller reports it)."""
+        band = self.gap[2]
+        if ws[0]["text"].startswith("("):
+            if not band["rank"]:
+                return False
+            label, ranks = band["rank"]; band["rank"] = None
+            saved = (self.header, self.inst, self.course, self.section, self.status, self.univ, self.pending)
+            inst, course, section, status, univ = band["table"]["ctx"]
+            self.header, self.inst, self.course, self.section, self.status, self.univ = band["header"], inst, course, section, status, univ
+            self.pending = (label, ranks, False)
+            n = len(self.res.cells)
+            try:
+                self._emit(page, ws)
+            finally:
+                self.header, self.inst, self.course, self.section, self.status, self.univ, self.pending = saved
+            return len(self.res.cells) > n
+        rows = [r for r in band["table"]["rows"] if abs(r[0] - ws[0]["top"]) <= Y_TOL]
+        if len(rows) != 1 or band["rank"]:
+            return False
+        band["rank"] = (rows[0][1], [(_xc(w), w["text"]) for w in ws])
+        return True
 
     def _emit(self, page, pct_words):
         label, ranks, _ = self.pending
